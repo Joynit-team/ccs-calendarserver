@@ -53,6 +53,7 @@ VOLUME [ "/var/db/caldavd" ]
 VOLUME [ "/etc/caldavd" ]
 
 # This can be edited in docker/caldavd.plist.template > HTTPPort
+EXPOSE 8443
 EXPOSE 8080
 
 # Some sensible defaults for config

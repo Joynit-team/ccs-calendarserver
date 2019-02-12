@@ -6,7 +6,7 @@ configs:
 
 services:
   ccs:
-    image: giorgioazzinnaro/ccs-calendarserver
+    image: ccs-calendarserver:latest
     environment:
       POSTGRES_HOST: 'tcp:postgres:5432'
       POSTGRES_DB: ccs
@@ -16,11 +16,17 @@ services:
       MEMCACHED_PORT: 11211
     volumes:
      - ccsdata:/var/db/caldavd
-     - ccsconf:/etc/caldavd
+     - ./conf:/etc/caldavd
+     - ./certs:/etc/ssl/certs
     networks:
       - ccsnet
     ports:
       - "8080:8080"
+      - "8443:8443"
+      - target: 1389
+        published: 1389
+        protocol: tcp
+        mode: host
     depends_on:
       - postgres
       - memcached
@@ -34,7 +40,7 @@ services:
       POSTGRES_USER: caldavd
       POSTGRES_PASSWORD: test1234
     volumes:
-      - "postgresdata:/var/lib/postgresql/data"
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
     configs:
       - source: sql_seed
         target: /docker-entrypoint-initdb.d/ccs.sql
@@ -48,9 +54,9 @@ services:
 
 
 volumes:
-  postgresdata:
+  # postgresdata:
   ccsdata:
-  ccsconf:
+  # ccsconf:
 
 
 networks:
