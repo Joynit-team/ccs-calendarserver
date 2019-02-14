@@ -143,6 +143,8 @@
       <dict>
         <key>Enabled</key>
         <true/>
+        <key>AllowedOverWireUnencrypted</key> <!-- advertised over non SSL? -->
+        <true/>
       </dict>
 
       <!-- Digest challenge/response -->
