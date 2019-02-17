@@ -109,19 +109,6 @@
     <key>DirectoryRealmName</key>
     <string>Test Realm</string>
 
-    <key>ResourceService</key>
-    <dict>
-      <key>Enabled</key>
-      <false/>
-    </dict>
-
-    <!-- XML File Augment Service -->
-    <key>AugmentService</key>
-    <dict>
-      <key>Enabled</key>
-      <false/>
-    </dict>
-
     <!--
         Special principals
 
@@ -217,10 +204,5 @@
     <!-- Keychain identity to use instead of cert files -->
     <key>SSLKeychainIdentity</key>
     <string>org.calendarserver.test</string>
-
-
-    <!-- Log levels -->
-    <key>DefaultLogLevel</key>
-    <string>debug</string> <!-- debug, info, warn, error -->
   </dict>
 </plist>
