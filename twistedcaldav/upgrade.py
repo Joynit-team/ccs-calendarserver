@@ -63,8 +63,6 @@ from twisted.python.filepath import FilePath
 from twisted.python.reflect import namedAny
 from twisted.python.reflect import namedClass
 
-from calendarserver.tap.util import getRootResource, FakeRequest
-
 from twext.python.log import Logger
 from twext.who.idirectory import RecordType
 
@@ -1164,6 +1162,9 @@ class PostDBImportStep(object):
         if os.path.exists(inboxItemsList):
 
             log.info("Starting inbox item processing.")
+
+            # avoid circular dependency
+            from calendarserver.tap.util import getRootResource, FakeRequest
 
             root = getRootResource(self.config, self.store)
             directory = root.getDirectory()
